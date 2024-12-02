@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ghobadi128.github.io/sitemap.xml
