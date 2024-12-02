@@ -47,96 +47,287 @@ navLinksMobile.querySelectorAll('a').forEach(link => {
     });
 });
 
-// Navbar Scroll Effect
-let lastScroll = 0;
-window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
-    
-    if (currentScroll <= 0) {
-        navbar.classList.remove('scroll-up');
-        return;
-    }
-    
-    if (currentScroll > lastScroll && !navbar.classList.contains('scroll-down')) {
-        navbar.classList.remove('scroll-up');
-        navbar.classList.add('scroll-down');
-    } else if (currentScroll < lastScroll && navbar.classList.contains('scroll-down')) {
-        navbar.classList.remove('scroll-down');
-        navbar.classList.add('scroll-up');
-    }
-    lastScroll = currentScroll;
-});
-
-// Smooth Scrolling for Navigation Links
+// Smooth scroll for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        const navHeight = document.querySelector('.navbar').offsetHeight;
-        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-        
-        window.scrollTo({
-            top: targetPosition - navHeight,
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
             behavior: 'smooth'
         });
-
-        // Close mobile menu if open
-        if (window.innerWidth <= 768) {
-            navLinks.style.display = 'none';
-        }
     });
 });
 
-// Form Submission
-const contactForm = document.getElementById('contact-form');
-contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Get form data
-    const formData = new FormData(this);
-    const data = Object.fromEntries(formData);
-    
-    // Here you would typically send the data to a server
-    console.log('Form submitted:', data);
-    
-    // Show success message
-    const button = this.querySelector('button[type="submit"]');
-    const originalText = button.textContent;
-    button.textContent = 'Message Sent!';
-    button.classList.add('success');
-    
-    setTimeout(() => {
-        button.textContent = originalText;
-        button.classList.remove('success');
-        this.reset();
-    }, 3000);
-});
-
-// Scroll Animation for Sections
+// Intersection Observer for fade-in animations
 const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
 };
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('animate');
-            
-            // Animate children with delay for cascade effect
-            const children = entry.target.querySelectorAll('.project-card, .certification-card, .timeline-item, .skill-item');
-            children.forEach((child, index) => {
-                setTimeout(() => {
-                    child.classList.add('animate');
-                }, index * 100);
-            });
+            entry.target.classList.add('visible');
+            if (entry.target.classList.contains('skill-progress')) {
+                const progress = entry.target.getAttribute('data-progress');
+                entry.target.style.width = `${progress}%`;
+            }
         }
     });
 }, observerOptions);
 
-// Observe all sections and cards
-document.querySelectorAll('section, .project-card, .certification-card, .timeline-item, .skill-item').forEach((section) => {
-    observer.observe(section);
+// Observe all fade-in elements
+document.querySelectorAll('.fade-in').forEach(element => {
+    observer.observe(element);
+});
+
+// Observe skill progress bars
+document.querySelectorAll('.skill-progress').forEach(element => {
+    observer.observe(element);
+});
+
+// Navbar scroll behavior
+let lastScroll = 0;
+const navbar = document.querySelector('.navbar');
+
+window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    // Add shadow and backdrop blur when scrolling
+    if (currentScroll > 0) {
+        navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+        navbar.style.backdropFilter = 'blur(10px)';
+    } else {
+        navbar.style.boxShadow = 'none';
+        navbar.style.backdropFilter = 'none';
+    }
+    
+    // Hide/show navbar based on scroll direction
+    if (currentScroll > lastScroll && currentScroll > 100) {
+        navbar.style.transform = 'translateY(-100%)';
+    } else {
+        navbar.style.transform = 'translateY(0)';
+    }
+    
+    lastScroll = currentScroll;
+});
+
+// Theme toggle functionality
+const themeToggle = document.querySelector('.theme-toggle');
+const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+function setTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+}
+
+themeToggle.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+});
+
+// Set initial theme
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme) {
+    setTheme(savedTheme);
+} else {
+    setTheme(prefersDarkScheme.matches ? 'dark' : 'light');
+}
+
+// Typing animation for hero section
+const heroText = document.querySelector('.hero-text');
+if (heroText) {
+    const text = heroText.textContent;
+    heroText.textContent = '';
+    let i = 0;
+    
+    function typeWriter() {
+        if (i < text.length) {
+            heroText.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, 100);
+        }
+    }
+    
+    typeWriter();
+}
+
+// Scroll to top button
+const scrollTopBtn = document.querySelector('.scroll-top');
+
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        scrollTopBtn.style.opacity = '1';
+        scrollTopBtn.style.pointerEvents = 'all';
+    } else {
+        scrollTopBtn.style.opacity = '0';
+        scrollTopBtn.style.pointerEvents = 'none';
+    }
+});
+
+scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// Project filters
+const filterButtons = document.querySelectorAll('.filter-btn');
+const projectsGrid = document.querySelector('.projects-grid');
+const projectCards = document.querySelectorAll('.project-card');
+
+filterButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        
+        const filter = button.getAttribute('data-filter');
+        
+        projectsGrid.classList.add('filtering');
+        
+        setTimeout(() => {
+            projectCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                if (filter === 'all' || category === filter) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            projectsGrid.classList.remove('filtering');
+        }, 300);
+    });
+});
+
+// Initialize AOS (Animate on Scroll)
+AOS.init({
+    duration: 800,
+    easing: 'ease-in-out',
+    once: true
+});
+
+// Form validation and submission
+const contactForm = document.querySelector('.contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Basic form validation
+        const formData = new FormData(contactForm);
+        let isValid = true;
+        
+        formData.forEach((value, key) => {
+            if (!value.trim()) {
+                isValid = false;
+                const input = contactForm.querySelector(`[name="${key}"]`);
+                input.classList.add('error');
+            }
+        });
+        
+        if (!isValid) {
+            return;
+        }
+        
+        // Show loading state
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        
+        try {
+            // Replace with your form submission logic
+            await new Promise(resolve => setTimeout(resolve, 1000));
+            
+            // Show success message
+            contactForm.reset();
+            alert('Message sent successfully!');
+        } catch (error) {
+            alert('An error occurred. Please try again.');
+        } finally {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+    
+    // Remove error class on input
+    contactForm.querySelectorAll('input, textarea').forEach(input => {
+        input.addEventListener('input', () => {
+            input.classList.remove('error');
+        });
+    });
+}
+
+// Initialize particles background
+particlesJS('particles-js', {
+    particles: {
+        number: {
+            value: 50,
+            density: {
+                enable: true,
+                value_area: 800
+            }
+        },
+        color: {
+            value: '#2563eb'
+        },
+        shape: {
+            type: 'circle'
+        },
+        opacity: {
+            value: 0.5,
+            random: false
+        },
+        size: {
+            value: 3,
+            random: true
+        },
+        line_linked: {
+            enable: true,
+            distance: 150,
+            color: '#2563eb',
+            opacity: 0.4,
+            width: 1
+        },
+        move: {
+            enable: true,
+            speed: 2,
+            direction: 'none',
+            random: false,
+            straight: false,
+            out_mode: 'out',
+            bounce: false
+        }
+    },
+    interactivity: {
+        detect_on: 'canvas',
+        events: {
+            onhover: {
+                enable: true,
+                mode: 'grab'
+            },
+            onclick: {
+                enable: true,
+                mode: 'push'
+            },
+            resize: true
+        },
+        modes: {
+            grab: {
+                distance: 140,
+                line_linked: {
+                    opacity: 1
+                }
+            },
+            push: {
+                particles_nb: 4
+            }
+        }
+    },
+    retina_detect: true
 });
 
 // Dynamic Year in Footer
@@ -312,122 +503,6 @@ scaleElements.forEach(element => {
     observeFade.observe(element);
 });
 
-// Theme Toggle
-const themeToggle = document.querySelector('.theme-toggle');
-const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
-
-// Function to toggle theme
-function toggleTheme() {
-    const currentTheme = document.documentElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
-    
-    // Update icon
-    const icon = themeToggle.querySelector('i');
-    icon.className = newTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-}
-
-// Initialize theme
-function initializeTheme() {
-    const savedTheme = localStorage.getItem('theme') || 
-        (prefersDarkScheme.matches ? 'dark' : 'light');
-    
-    document.documentElement.setAttribute('data-theme', savedTheme);
-    const icon = themeToggle.querySelector('i');
-    icon.className = savedTheme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-}
-
-// Event listeners
-themeToggle.addEventListener('click', toggleTheme);
-prefersDarkScheme.addListener((e) => {
-    const savedTheme = localStorage.getItem('theme');
-    if (!savedTheme) {
-        document.documentElement.setAttribute(
-            'data-theme',
-            e.matches ? 'dark' : 'light'
-        );
-    }
-});
-
-// Initialize theme on load
-initializeTheme();
-
-// Section Animations
-const sections = document.querySelectorAll('section');
-const sectionObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
-    });
-}, {
-    threshold: 0.2
-});
-
-sections.forEach(section => {
-    sectionObserver.observe(section);
-});
-
-// Enhanced Form Interaction
-const form = document.querySelector('.contact-form');
-const formInputs = form.querySelectorAll('input, textarea');
-
-formInputs.forEach(input => {
-    // Add loading state
-    input.addEventListener('focus', () => {
-        input.classList.add('loading');
-    });
-
-    input.addEventListener('blur', () => {
-        input.classList.remove('loading');
-    });
-
-    // Validate input
-    input.addEventListener('input', () => {
-        if (input.value.trim() !== '') {
-            input.classList.add('valid');
-        } else {
-            input.classList.remove('valid');
-        }
-    });
-});
-
-// Smooth anchor scrolling
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const headerOffset = 100;
-            const elementPosition = target.getBoundingClientRect().top;
-            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: 'smooth'
-            });
-
-            // Update URL without scrolling
-            history.pushState(null, null, this.getAttribute('href'));
-        }
-    });
-});
-
-// Project card interaction
-const projectCards = document.querySelectorAll('.project-card');
-
-projectCards.forEach(card => {
-    card.addEventListener('mouseenter', () => {
-        card.style.transform = 'translateY(-10px) scale(1.02)';
-    });
-
-    card.addEventListener('mouseleave', () => {
-        card.style.transform = 'translateY(0) scale(1)';
-    });
-});
-
 // Touch Device Detection
 const isTouchDevice = () => {
     return (('ontouchstart' in window) ||
@@ -484,73 +559,17 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Typing Animation
-const typingTexts = document.querySelectorAll('.typing-text');
-let typingIndex = 0;
-
-function typeText(element, text, i = 0) {
-    if (i < text.length) {
-        element.textContent += text.charAt(i);
-        setTimeout(() => typeText(element, text, i + 1), 100);
-    } else {
-        typingIndex++;
-        if (typingIndex < typingTexts.length) {
-            setTimeout(() => {
-                typingTexts[typingIndex].textContent = '';
-                typeText(typingTexts[typingIndex], typingTexts[typingIndex].getAttribute('data-text'));
-            }, 1000);
-        }
-    }
-}
-
-typingTexts.forEach(text => {
-    text.setAttribute('data-text', text.textContent);
-    text.textContent = '';
-});
-
-if (typingTexts.length > 0) {
-    typeText(typingTexts[0], typingTexts[0].getAttribute('data-text'));
-}
-
-// Project Filtering
-const filterBtns = document.querySelectorAll('.filter-btn');
-const projectsGrid = document.querySelector('.projects-grid');
+// Project card interaction
 const projectCards = document.querySelectorAll('.project-card');
 
-filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-        // Update active button
-        filterBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const filter = btn.getAttribute('data-filter');
-        
-        // Add filtering class for transition
-        projectsGrid.classList.add('filtering');
-
-        setTimeout(() => {
-            projectCards.forEach(card => {
-                const categories = card.getAttribute('data-categories').split(',');
-                if (filter === 'all' || categories.includes(filter)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-
-            // Remove filtering class
-            projectsGrid.classList.remove('filtering');
-        }, 300);
+projectCards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-10px) scale(1.02)';
     });
-});
 
-// Scroll Progress Indicator
-const scrollProgress = document.querySelector('.scroll-progress');
-
-window.addEventListener('scroll', () => {
-    const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = (window.scrollY / windowHeight);
-    scrollProgress.style.transform = `scaleX(${scrolled})`;
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0) scale(1)';
+    });
 });
 
 // Floating Contact Button
@@ -690,3 +709,12 @@ function filterPublications(tag) {
         }
     });
 }
+
+// Scroll Progress Indicator
+const scrollProgress = document.querySelector('.scroll-progress');
+
+window.addEventListener('scroll', () => {
+    const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (window.scrollY / windowHeight);
+    scrollProgress.style.transform = `scaleX(${scrolled})`;
+});
