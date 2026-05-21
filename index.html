@@ -1,394 +1,1145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Hossein Ghobadi - Research Engineer & AI Specialist. Expert in AI, Machine Learning, and Signal Processing with international project experience.">
-    <meta name="keywords" content="Hossein Ghobadi, AI Engineer, Machine Learning, Signal Processing, Research Engineer, GNSS, Portfolio">
-    <meta name="author" content="Hossein Ghobadi">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ghobadi128.github.io/">
-    <meta property="og:title" content="Hossein Ghobadi - Research Engineer & AI Specialist">
-    <meta property="og:description" content="Portfolio of Hossein Ghobadi - Expert in AI, Machine Learning, and Signal Processing with international project experience.">
-    <meta property="og:image" content="assets/profile.jpg">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="description" content="Hossein (Hoss) Ghobadi — GNSS Signal Processing Engineer, RF Systems Scientist, and Applied AI Researcher. Marie Curie Fellow, PhD, 173 citations. San Francisco Bay Area. Fully authorized to work in the US."/>
+<meta name="keywords" content="Hossein Ghobadi, GNSS engineer, signal processing, ionosphere, RFSoC, beamformer, SKA, Marie Curie, PhD, autonomous systems, navigation, Swift Navigation, Spire Global, Saildrone, San Francisco"/>
+<meta property="og:title" content="Hossein Ghobadi — GNSS & Signal Processing Engineer"/>
+<meta property="og:description" content="Marie Curie Fellow · PhD · 173 Citations · RFSoC Beamformer · BMW · LLM Research · San Francisco Bay Area"/>
+<meta property="og:url" content="https://ghobadi128.github.io/"/>
+<meta property="og:type" content="website"/>
+<title>Hossein Ghobadi — GNSS Engineer & Signal Processing Scientist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#08112B;
+  --bg2:#0D1A3A;
+  --bg3:#122047;
+  --border:#1E3060;
+  --teal:#00D4CC;
+  --teal2:#00A89F;
+  --gold:#F5A623;
+  --gold2:#C8851A;
+  --white:#F0F4FF;
+  --muted:#8899BB;
+  --text:#C8D8F0;
+  --red:#FF6B6B;
+  --green:#4ECDC4;
+  --card:#0F1E42;
+  --card2:#142248;
+  --radius:8px;
+  --radius2:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;line-height:1.6;overflow-x:hidden}
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://ghobadi128.github.io/">
-    <meta property="twitter:title" content="Hossein Ghobadi - Research Engineer & AI Specialist">
-    <meta property="twitter:description" content="Portfolio of Hossein Ghobadi - Expert in AI, Machine Learning, and Signal Processing with international project experience.">
-    <meta property="twitter:image" content="assets/profile.jpg">
+/* DOT GRID BACKGROUND */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:radial-gradient(circle,rgba(0,212,204,.12) 1px,transparent 1px);
+  background-size:32px 32px;
+  pointer-events:none;z-index:0
+}
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    
-    <title>Professional Portfolio</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  padding:.9rem 2rem;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(8,17,43,.85);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(0,212,204,.15);
+  transition:all .3s
+}
+.nav-logo{font-family:'Space Mono',monospace;font-size:.95rem;color:var(--teal);letter-spacing:.08em}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--muted);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;transition:color .2s}
+.nav-links a:hover{color:var(--teal)}
+.nav-status{display:flex;align-items:center;gap:.5rem;font-family:'Space Mono',monospace;font-size:.7rem;color:var(--green)}
+.nav-status::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* HERO */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  padding:8rem 2rem 4rem;position:relative;overflow:hidden
+}
+.hero-grid{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;position:relative;z-index:1}
+.hero-label{
+  font-family:'Space Mono',monospace;font-size:.72rem;
+  color:var(--teal);letter-spacing:.2em;text-transform:uppercase;
+  margin-bottom:1.2rem;display:flex;align-items:center;gap:.75rem
+}
+.hero-label::before{content:'';width:2rem;height:1px;background:var(--teal)}
+.hero-name{
+  font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:clamp(3rem,6vw,5.5rem);color:var(--white);
+  line-height:1.05;margin-bottom:.5rem
+}
+.hero-name em{font-style:italic;color:var(--teal)}
+.hero-role{
+  font-family:'Space Mono',monospace;font-size:.9rem;
+  color:var(--gold);margin-bottom:1.5rem;letter-spacing:.05em
+}
+.hero-desc{font-size:1.05rem;color:var(--text);line-height:1.75;margin-bottom:2rem;max-width:520px}
+.hero-tags{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2.5rem}
+.tag{
+  font-family:'Space Mono',monospace;font-size:.65rem;
+  padding:.3rem .7rem;border:1px solid rgba(0,212,204,.35);
+  color:var(--teal);border-radius:4px;letter-spacing:.08em
+}
+.tag.gold{border-color:rgba(245,166,35,.4);color:var(--gold)}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+.btn{
+  font-family:'Space Mono',monospace;font-size:.75rem;letter-spacing:.1em;
+  padding:.75rem 1.5rem;border-radius:var(--radius);cursor:pointer;
+  text-decoration:none;transition:all .25s;display:inline-block
+}
+.btn-primary{background:var(--teal);color:var(--bg);border:1px solid var(--teal)}
+.btn-primary:hover{background:transparent;color:var(--teal)}
+.btn-secondary{background:transparent;color:var(--text);border:1px solid var(--border)}
+.btn-secondary:hover{border-color:var(--teal);color:var(--teal)}
+
+/* HERO VISUAL */
+.hero-visual{position:relative;display:flex;flex-direction:column;gap:1rem}
+.signal-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius2);padding:1.25rem 1.5rem;
+  position:relative;overflow:hidden;
+  transition:transform .3s,border-color .3s
+}
+.signal-card:hover{transform:translateY(-3px);border-color:rgba(0,212,204,.4)}
+.signal-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,var(--teal),transparent);
+  animation:scan 3s linear infinite
+}
+@keyframes scan{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.sc-label{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.4rem}
+.sc-value{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:var(--white)}
+.sc-value span{font-size:.9rem;color:var(--teal);font-family:'Space Mono',monospace}
+.sc-sub{font-size:.8rem;color:var(--muted);margin-top:.2rem}
+.stats-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.stat-mini{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:1rem;text-align:center
+}
+.stat-mini .n{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;color:var(--gold)}
+.stat-mini .l{font-family:'Space Mono',monospace;font-size:.62rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-top:.2rem}
+
+/* SECTION BASE */
+section{padding:6rem 2rem;position:relative;z-index:1}
+.container{max-width:1200px;margin:0 auto}
+.section-label{
+  font-family:'Space Mono',monospace;font-size:.72rem;
+  color:var(--teal);letter-spacing:.2em;text-transform:uppercase;
+  display:flex;align-items:center;gap:.75rem;margin-bottom:1rem
+}
+.section-label::before{content:'';width:2rem;height:1px;background:var(--teal)}
+.section-title{
+  font-family:'Cormorant Garamond',serif;font-weight:300;
+  font-size:clamp(2.2rem,4vw,3.5rem);color:var(--white);
+  line-height:1.1;margin-bottom:3rem
+}
+.section-title em{font-style:italic;color:var(--teal)}
+
+/* IDENTITY CARDS */
+.identities{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:4rem}
+.id-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius2);padding:2rem;
+  transition:transform .3s,border-color .3s
+}
+.id-card:hover{transform:translateY(-4px)}
+.id-card.teal{border-top:3px solid var(--teal)}
+.id-card.gold{border-top:3px solid var(--gold)}
+.id-card.purple{border-top:3px solid #9B7FFF}
+.id-num{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:.15em;margin-bottom:.75rem}
+.id-title{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:var(--white);margin-bottom:.75rem}
+.id-body{font-size:.88rem;color:var(--text);line-height:1.7}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.skill-cluster{background:var(--card);border:1px solid var(--border);border-radius:var(--radius2);padding:1.75rem}
+.cluster-title{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--teal);letter-spacing:.15em;text-transform:uppercase;margin-bottom:1.25rem}
+.skill-bar{margin-bottom:.9rem}
+.skill-bar-label{display:flex;justify-content:space-between;margin-bottom:.35rem;font-size:.82rem}
+.skill-bar-label span:first-child{color:var(--text)}
+.skill-bar-label span:last-child{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--teal)}
+.bar-track{height:4px;background:var(--bg3);border-radius:2px;overflow:hidden}
+.bar-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--teal),var(--teal2));transform-origin:left;transform:scaleX(0);transition:transform 1.2s cubic-bezier(.22,1,.36,1)}
+.bar-fill.animated{transform:scaleX(1)}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+.stag{font-family:'Space Mono',monospace;font-size:.65rem;padding:.25rem .6rem;background:var(--bg3);color:var(--muted);border-radius:4px;border:1px solid var(--border)}
+.superpower-badge{
+  display:inline-flex;align-items:center;gap:.4rem;
+  background:rgba(245,166,35,.12);border:1px solid rgba(245,166,35,.3);
+  color:var(--gold);font-family:'Space Mono',monospace;font-size:.65rem;
+  padding:.25rem .7rem;border-radius:4px;letter-spacing:.06em;
+  margin-top:.75rem
+}
+
+/* EXPERIENCE TIMELINE */
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;
+  width:1px;background:linear-gradient(180deg,var(--teal),var(--border),transparent)
+}
+.tl-item{
+  position:relative;margin-bottom:3rem;
+  opacity:0;transform:translateX(-20px);
+  transition:opacity .6s,transform .6s
+}
+.tl-item.visible{opacity:1;transform:translateX(0)}
+.tl-dot{
+  position:absolute;left:-2.4rem;top:.3rem;
+  width:12px;height:12px;border-radius:50%;
+  background:var(--teal);border:2px solid var(--bg);
+  box-shadow:0 0 0 3px rgba(0,212,204,.2)
+}
+.tl-dot.gold{background:var(--gold);box-shadow:0 0 0 3px rgba(245,166,35,.2)}
+.tl-dot.purple{background:#9B7FFF;box-shadow:0 0 0 3px rgba(155,127,255,.2)}
+.tl-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius2);padding:1.75rem 2rem}
+.tl-card:hover{border-color:rgba(0,212,204,.3)}
+.tl-meta{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.tl-role{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--white)}
+.tl-company{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--teal);letter-spacing:.08em;margin-top:.2rem}
+.tl-period{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--muted);white-space:nowrap;text-align:right}
+.tl-location{color:var(--gold);font-size:.68rem}
+.tl-body{font-size:.88rem;color:var(--text);line-height:1.7;margin-bottom:1.25rem}
+.tl-results{list-style:none;padding:0}
+.tl-results li{
+  font-size:.86rem;color:var(--text);line-height:1.65;
+  padding:.4rem 0 .4rem 1.5rem;position:relative;
+  border-bottom:1px solid rgba(255,255,255,.04)
+}
+.tl-results li:last-child{border-bottom:none}
+.tl-results li::before{
+  content:'→';position:absolute;left:0;
+  color:var(--teal);font-family:'Space Mono',monospace;font-size:.75rem
+}
+.result-highlight{color:var(--gold);font-weight:500}
+.tl-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem}
+.chip{
+  font-family:'Space Mono',monospace;font-size:.63rem;
+  padding:.22rem .55rem;background:rgba(0,212,204,.08);
+  color:var(--teal);border:1px solid rgba(0,212,204,.2);
+  border-radius:3px
+}
+.chip.gold{background:rgba(245,166,35,.08);color:var(--gold);border-color:rgba(245,166,35,.2)}
+
+/* PUBLICATIONS */
+.pub-grid{display:grid;gap:1.25rem}
+.pub-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius2);padding:1.5rem 1.75rem;
+  display:grid;grid-template-columns:auto 1fr auto;gap:1.5rem;align-items:start;
+  transition:border-color .3s,transform .3s
+}
+.pub-card:hover{border-color:rgba(155,127,255,.4);transform:translateX(4px)}
+.pub-year{
+  font-family:'Space Mono',monospace;font-size:.75rem;
+  color:var(--teal);writing-mode:vertical-lr;
+  text-orientation:mixed;transform:rotate(180deg);
+  align-self:center
+}
+.pub-body .pub-title{
+  font-family:'Cormorant Garamond',serif;font-size:1.15rem;
+  color:var(--white);margin-bottom:.4rem;line-height:1.4
+}
+.pub-authors{font-size:.8rem;color:var(--muted);margin-bottom:.4rem}
+.pub-venue{font-family:'Space Mono',monospace;font-size:.7rem;color:var(--teal)}
+.pub-abstract{font-size:.83rem;color:var(--text);margin-top:.6rem;line-height:1.6}
+.pub-cite{text-align:center}
+.cite-num{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;color:var(--gold)}
+.cite-label{font-family:'Space Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:.1em}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
+.proj-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius2);overflow:hidden;
+  transition:transform .3s,border-color .3s
+}
+.proj-card:hover{transform:translateY(-5px);border-color:rgba(0,212,204,.35)}
+.proj-top{height:4px}
+.proj-top.teal{background:linear-gradient(90deg,var(--teal),var(--teal2))}
+.proj-top.gold{background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.proj-top.purple{background:linear-gradient(90deg,#9B7FFF,#6B4FFF)}
+.proj-content{padding:1.5rem}
+.proj-icon{font-size:1.5rem;margin-bottom:.75rem}
+.proj-title{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--white);margin-bottom:.5rem}
+.proj-desc{font-size:.85rem;color:var(--text);line-height:1.65;margin-bottom:1rem}
+.proj-outcome{
+  font-family:'Space Mono',monospace;font-size:.7rem;
+  color:var(--gold);padding:.4rem .75rem;
+  background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.2);
+  border-radius:4px;margin-bottom:1rem
+}
+.proj-chips{display:flex;flex-wrap:wrap;gap:.4rem}
+.pchip{
+  font-family:'Space Mono',monospace;font-size:.6rem;
+  padding:.2rem .5rem;background:var(--bg3);
+  color:var(--muted);border:1px solid var(--border);border-radius:3px
+}
+
+/* COMBO POWERS */
+.combos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem;margin-top:3rem}
+.combo-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius2);padding:1.5rem;
+  position:relative;overflow:hidden
+}
+.combo-card::after{
+  content:'';position:absolute;top:0;right:0;
+  width:3px;height:100%;
+  background:var(--teal)
+}
+.combo-card.gold::after{background:var(--gold)}
+.combo-card.purple::after{background:#9B7FFF}
+.combo-num{font-family:'Space Mono',monospace;font-size:2rem;font-weight:700;color:rgba(0,212,204,.15);margin-bottom:.5rem}
+.combo-title{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--white);margin-bottom:.4rem}
+.combo-body{font-size:.82rem;color:var(--text);line-height:1.6}
+.combo-employers{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--muted);margin-top:.75rem;line-height:1.5}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.contact-info{display:flex;flex-direction:column;gap:1rem}
+.contact-item{
+  display:flex;align-items:center;gap:1rem;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:1rem 1.25rem;
+  text-decoration:none;transition:border-color .2s,transform .2s
+}
+.contact-item:hover{border-color:var(--teal);transform:translateX(4px)}
+.ci-icon{font-size:1.2rem;color:var(--teal)}
+.ci-label{font-family:'Space Mono',monospace;font-size:.65rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.ci-value{font-size:.9rem;color:var(--white);margin-top:.1rem}
+.available-box{
+  background:rgba(0,212,204,.06);border:1px solid rgba(0,212,204,.25);
+  border-radius:var(--radius2);padding:1.5rem;margin-top:1rem
+}
+.av-title{font-family:'Space Mono',monospace;font-size:.72rem;color:var(--teal);letter-spacing:.12em;text-transform:uppercase;margin-bottom:.5rem}
+.av-body{font-size:.88rem;color:var(--text);line-height:1.7}
+
+/* FORM */
+.contact-form{display:flex;flex-direction:column;gap:1rem}
+.form-group{display:flex;flex-direction:column;gap:.4rem}
+.form-group label{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.form-group input,.form-group textarea{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:.75rem 1rem;
+  color:var(--white);font-family:'Inter',sans-serif;font-size:.9rem;
+  transition:border-color .2s;resize:vertical
+}
+.form-group input:focus,.form-group textarea:focus{
+  outline:none;border-color:var(--teal);
+  box-shadow:0 0 0 3px rgba(0,212,204,.1)
+}
+.form-group textarea{min-height:120px}
+
+/* DIVIDER */
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0}
+
+/* FOOTER */
+footer{
+  padding:2.5rem 2rem;text-align:center;
+  font-family:'Space Mono',monospace;font-size:.7rem;
+  color:var(--muted);letter-spacing:.06em;
+  border-top:1px solid var(--border)
+}
+footer a{color:var(--teal);text-decoration:none}
+
+/* SIGNAL WAVE SVG */
+.signal-bg{
+  position:absolute;inset:0;z-index:0;opacity:.06;
+  pointer-events:none;overflow:hidden
+}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:3rem}
+  .hero-visual{order:-1}
+  .identities{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .pub-card{grid-template-columns:1fr;gap:.75rem}
+  .pub-year{writing-mode:horizontal-tb;transform:none}
+  nav .nav-links{display:none}
+}
+@media(max-width:600px){
+  section{padding:4rem 1.25rem}
+  .hero{padding:6rem 1.25rem 3rem}
+  .stats-row{grid-template-columns:1fr 1fr}
+  .tl-card{padding:1.25rem}
+}
+
+/* ANIMATED COUNTER */
+.counter{display:inline-block}
+
+/* SCROLL INDICATOR */
+.scroll-indicator{
+  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
+  font-family:'Space Mono',monospace;font-size:.6rem;color:var(--muted);
+  letter-spacing:.1em;animation:float 3s ease-in-out infinite
+}
+.scroll-indicator::after{
+  content:'';width:1px;height:2rem;
+  background:linear-gradient(180deg,var(--teal),transparent)
+}
+@keyframes float{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-6px)}}
+
+</style>
 </head>
 <body>
-    <!-- Navigation -->
-    <header>
-        <nav>
-            <div class="logo">HG</div>
-            <div class="menu-btn">
-                <div class="menu-btn__burger"></div>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#home">          </a></li>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#publications">Publications</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-particles"></div>
-        <div class="hero-content">
-            <h1>Hossein Ghobadi</h1>
-            <p class="typing-text">Research Engineer & AI Specialist</p>
-            <p class="description">Experienced engineer specializing in complex systems, AI, and ICT with 7+ years of expertise in managing international projects and developing innovative solutions.</p>
-            <div class="cta-buttons">
-                <a href="#contact" class="btn primary">Contact Me</a>
-                <a href="/assets/Hossein_Ghobadi_CV.pdf" class="btn secondary" download>Download CV</a>
-            </div>
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">H<span>G</span> / GHOBADI</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-status">Available · SF Bay Area</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <svg class="signal-bg" viewBox="0 0 1200 600" preserveAspectRatio="none">
+    <polyline points="0,300 80,300 120,100 160,450 200,200 240,380 280,150 320,420 360,250 400,350 440,180 480,390 520,280 560,320 600,300 1200,300" fill="none" stroke="#00D4CC" stroke-width="1.5"/>
+    <polyline points="0,400 100,400 140,220 180,480 220,300 260,430 300,250 340,460 380,320 420,410 460,240 500,440 540,350 580,380 620,360 1200,360" fill="none" stroke="#F5A623" stroke-width="1" opacity=".5"/>
+  </svg>
+
+  <div class="hero-grid container">
+    <div>
+      <div class="hero-label">Signal Processing · GNSS · RF Systems · Applied AI</div>
+      <h1 class="hero-name">Hossein<br/><em>"Hoss"</em><br/>Ghobadi</h1>
+      <p class="hero-role">// GNSS Engineer · RF Systems Scientist · Deep-Tech Builder</p>
+      <p class="hero-desc">Marie Curie Fellow and PhD scientist who invented a signal processing algorithm cited 173 times globally, built a physical radio telescope beamformer for the SKA Observatory, and led AI research teams across 5 countries. Now based in San Francisco, building the next chapter.</p>
+      <div class="hero-tags">
+        <span class="tag">GNSS &amp; Ionosphere</span>
+        <span class="tag">RFSoC · FPGA</span>
+        <span class="tag">Signal Processing</span>
+        <span class="tag">Autonomous Systems</span>
+        <span class="tag gold">Marie Curie Fellow</span>
+        <span class="tag gold">Green Card · No Sponsorship</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">Get In Touch</a>
+        <a href="assets/Hossein_Ghobadi_CV.pdf" class="btn btn-secondary" target="_blank">Download CV</a>
+        <a href="https://scholar.google.com/citations?user=jh-rvZYAAAAJ" class="btn btn-secondary" target="_blank">Publications →</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="signal-card">
+        <div class="sc-label">Research Impact</div>
+        <div class="sc-value"><span class="counter" data-target="173">0</span> <span>citations</span></div>
+        <div class="sc-sub">GPS Solutions · IEEE GRSL · Sensors · URSI · AGU</div>
+      </div>
+      <div class="stats-row">
+        <div class="stat-mini">
+          <div class="n"><span class="counter" data-target="5">0</span></div>
+          <div class="l">Peer-reviewed papers</div>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <h2>About Me</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p>With over 7 years of experience in engineering and managing complex international projects, I specialize in performing analytical and architectural assessments, developing simulations, and designing ICT systems. My expertise spans from leading multidisciplinary teams to implementing cutting-edge solutions in AI, GNSS, and system architecture.</p>
-                <p>At Arcetro Observatory, I improved signal processing efficiency by 20% and increased project performance by 30%. At Pixida GmbH, I enhanced defect management by 25% through Agile frameworks implementation.</p>
-            </div>
-            <div class="skills">
-                <h3>Key Skills</h3>
-                <div class="skills-grid">
-                    <div class="skill-item">Project Management</div>
-                    <div class="skill-item">AI & LLMs</div>
-                    <div class="skill-item">Python</div>
-                    <div class="skill-item">MATLAB</div>
-                    <div class="skill-item">C</div>
-                    <div class="skill-item">Docker</div>
-                    <div class="skill-item">Git</div>
-                    <div class="skill-item">Agile</div>
-                    <div class="skill-item">System Architecture</div>
-                    <div class="skill-item">Signal Processing</div>
-                </div>
-            </div>
+        <div class="stat-mini">
+          <div class="n"><span class="counter" data-target="8">0</span></div>
+          <div class="l">Years experience</div>
         </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="skills">
-        <h2 class="section-title">Skills & Expertise</h2>
-        
-        <!-- Achievement Stats -->
-        <div class="achievements">
-            <div class="achievement-card scale-in">
-                <i class="fas fa-project-diagram achievement-icon"></i>
-                <div class="achievement-number" data-target="50">0</div>
-                <div class="achievement-label">Projects Completed</div>
-            </div>
-            
-            <div class="achievement-card scale-in">
-                <i class="fas fa-file-alt achievement-icon"></i>
-                <div class="achievement-number" data-target="15">0</div>
-                <div class="achievement-label">Publications</div>
-            </div>
-            
-            <div class="achievement-card scale-in">
-                <i class="fas fa-award achievement-icon"></i>
-                <div class="achievement-number" data-target="10">0</div>
-                <div class="achievement-label">Awards</div>
-            </div>
-            
-            <div class="achievement-card scale-in">
-                <i class="fas fa-users achievement-icon"></i>
-                <div class="achievement-number" data-target="1000">0</div>
-                <div class="achievement-label">Citations</div>
-            </div>
+        <div class="stat-mini">
+          <div class="n"><span class="counter" data-target="12">0</span></div>
+          <div class="l">PhD researchers led</div>
         </div>
-
-        <!-- Skills Grid -->
-        <div class="skills-container">
-            <!-- Technical Skills -->
-            <div class="skill-category fade-in">
-                <h3><i class="fas fa-code"></i> Technical Tools</h3>
-                
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">Python & MATLAB</span>
-                        <span class="skill-percentage">95%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="95"></div>
-                    </div>
-                </div>
-
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">AI/Machine Learning</span>
-                        <span class="skill-percentage">90%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="90"></div>
-                    </div>
-                </div>
-
-                <div class="skill-tags">
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">MATLAB</span>
-                    <span class="skill-tag">C</span>
-                    <span class="skill-tag">Docker</span>
-                    <span class="skill-tag">Git</span>
-                    <span class="skill-tag">Jira</span>
-                    <span class="skill-tag">VS Code</span>
-                </div>
-            </div>
-
-            <!-- Development Skills -->
-            <div class="skill-category fade-in">
-                <h3><i class="fas fa-laptop-code"></i> Development</h3>
-                
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">Web Development</span>
-                        <span class="skill-percentage">85%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="85"></div>
-                    </div>
-                </div>
-
-                <div class="skill-tags">
-                    <span class="skill-tag">HTML</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">Joomla</span>
-                    <span class="skill-tag">WordPress</span>
-                </div>
-            </div>
-
-            <!-- Research Skills -->
-            <div class="skill-category fade-in">
-                <h3><i class="fas fa-flask"></i> Research & Development</h3>
-                
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">Scientific Research</span>
-                        <span class="skill-percentage">95%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="95"></div>
-                    </div>
-                </div>
-
-                <div class="skill-tags">
-                    <span class="skill-tag">AI/ML</span>
-                    <span class="skill-tag">LLMs</span>
-                    <span class="skill-tag">GNSS</span>
-                    <span class="skill-tag">Signal Processing</span>
-                </div>
-            </div>
-
-            <!-- Project Management -->
-            <div class="skill-category fade-in">
-                <h3><i class="fas fa-tasks"></i> Project Management</h3>
-                
-                <div class="skill-item">
-                    <div class="skill-header">
-                        <span class="skill-name">Team Leadership</span>
-                        <span class="skill-percentage">90%</span>
-                    </div>
-                    <div class="skill-bar">
-                        <div class="skill-progress" data-progress="90"></div>
-                    </div>
-                </div>
-
-                <div class="skill-tags">
-                    <span class="skill-tag">Product Owner</span>
-                    <span class="skill-tag">Agile</span>
-                    <span class="skill-tag">Stakeholder Management</span>
-                    <span class="skill-tag">Technical Teams</span>
-                </div>
-            </div>
+        <div class="stat-mini">
+          <div class="n"><span class="counter" data-target="5">0</span></div>
+          <div class="l">Countries worked in</div>
         </div>
-    </section>
+      </div>
+      <div class="signal-card">
+        <div class="sc-label">Current Location</div>
+        <div class="sc-value" style="font-size:1.3rem">San Francisco Bay Area <span style="color:var(--gold)">⬡</span></div>
+        <div class="sc-sub" style="color:var(--green)">✓ Fully Authorized · No Visa Sponsorship Needed · US Green Card</div>
+      </div>
+    </div>
+  </div>
 
-    <!-- Professional Experience Section -->
-    <section id="experience" class="experience">
-        <h2 class="section-title">Professional Experience</h2>
-        
-        <div class="experience-timeline">
-            <!-- NXP Position -->
-            <div class="experience-item fade-in">
-                <div class="experience-header">
-                    <h3>Research Engineer</h3>
-                    <div class="company-info">
-                        <span class="company">NXP</span>
-                        <span class="location">Netherlands</span>
-                        <span class="duration">09/2023 - 04/2024</span>
-                    </div>
-                </div>
-                <div class="experience-content">
-                    <p class="experience-description">Algorithmic solutions to challenges in conversational intelligence</p>
-                    <ul class="achievements">
-                        <li>Led team of 12 PhD researchers in LGSTM Advanced project, improving knowledge sharing and stakeholder engagement by 50%</li>
-                        <li>Researched LLMs and Public Cloud IaaS, organizing 2+ dissemination events</li>
-                        <li>Enhanced research visibility by 50% through effective project milestones and Applied WordPress</li>
-                    </ul>
-                    <div class="tech-stack">
-                        <span class="tech-tag">AI/ML</span>
-                        <span class="tech-tag">LLMs</span>
-                        <span class="tech-tag">Cloud</span>
-                        <span class="tech-tag">Research</span>
-                    </div>
-                </div>
+  <div class="scroll-indicator">SCROLL</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="section-label">About</div>
+    <h2 class="section-title">Three identities.<br/><em>One engineer.</em></h2>
+
+    <div class="identities">
+      <div class="id-card teal reveal">
+        <div class="id-num">// 01 THE SCIENTIST</div>
+        <div class="id-title">Deep-Tech Signal Scientist</div>
+        <div class="id-body">Invented the Fast Iterative Filtering (FIF) phase-detrending technique — cited 173 times by NOAA, ESA, university labs across 12 countries. Published ionospheric scintillation research spanning polar (Antarctica) and equatorial environments. Marie Curie ITN Fellow at INGV Rome. PhD, University of Salento, Italy.</div>
+      </div>
+      <div class="id-card gold reveal" style="transition-delay:.15s">
+        <div class="id-num">// 02 THE BUILDER</div>
+        <div class="id-title">Systems Architect Who Ships</div>
+        <div class="id-body">Built a production RFSoC digital beamformer (8×8 phased array, MMIC LNAs, Xilinx ZCU216) for the SKA radio telescope at INAF Arcetri Observatory. Shipped BMW infotainment and EV-charging features across 20+ countries. Designed a cloud GNSS service architecture for the commercial autonomous vehicle market — in a peer-reviewed paper in 2019.</div>
+      </div>
+      <div class="id-card purple reveal" style="transition-delay:.3s">
+        <div class="id-num">// 03 THE BUILDER (NEXT)</div>
+        <div class="id-title">Founder in the Making</div>
+        <div class="id-body">Stanford GSB campus visit. SCORE entrepreneur workshops (Business Plan, Market Research, Legal). YC co-founder matching. EWOR deeptech fellowship candidate. The GNSS-as-a-Service company described in the 2019 Sensors paper? Still unbuilt at the right price point. That is not a coincidence.</div>
+      </div>
+    </div>
+
+    <div style="max-width:800px">
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--white);line-height:1.75;font-style:italic">
+        "An Iranian-born, European-trained, US-based deep-tech scientist who survived the Iranian academic system, earned a Marie Curie fellowship on merit, built a radio telescope instrument for one of humanity's most ambitious science projects, and ultimately won the hardest immigration prize available to a foreign scientist in the US — the EB-2 National Interest Waiver."
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label">Capabilities</div>
+    <h2 class="section-title">What I bring<br/><em>to your team</em></h2>
+
+    <div class="skills-grid">
+
+      <div class="skill-cluster reveal">
+        <div class="cluster-title">⬡ GNSS &amp; Navigation Science</div>
+        <div class="skill-bar">
+          <div class="skill-bar-label"><span>GNSS Ionospheric Modeling</span><span>100%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-bar-label"><span>Scintillation / TEC Analysis</span><span>100%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-bar-label"><span>RTK / PPP Error Budgets</span><span>88%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:88%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-bar-label"><span>Space Weather Prediction</span><span>90%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
+        </div>
+        <div class="superpower-badge">★ Rarest Skill — &lt;500 people globally</div>
+        <div class="skill-tags">
+          <span class="stag">CANSPACE Member</span>
+          <span class="stag">ION / URSI</span>
+          <span class="stag">AGU</span>
+          <span class="stag">GPS Solutions</span>
+        </div>
+      </div>
+
+      <div class="skill-cluster reveal" style="transition-delay:.1s">
+        <div class="cluster-title">⬡ RF &amp; Hardware Systems</div>
+        <div class="skill-bar">
+          <div class="skill-bar-label"><span>RFSoC / FPGA (Xilinx ZCU216)</span><span>90%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-bar-label"><span>Digital Beamforming / Phased Array</span><span>88%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:88%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-bar-label"><span>Vivado / VHDL / HDL</span><span>80%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:80%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-bar-label"><span>Signal Chain Design (MMIC LNA)</span><span>82%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:82%"></div></div>
+        </div>
+        <div class="superpower-badge">★ Built SKA Radio Telescope Instrument</div>
+        <div class="skill-tags">
+          <span class="stag">CASPER Toolflow</span>
+          <span class="stag">Simulink</span>
+          <span class="stag">URSI 2022</span>
+        </div>
+      </div>
+
+      <div class="skill-cluster reveal" style="transition-delay:.2s">
+        <div class="cluster-title">⬡ Software &amp; Algorithms</div>
+        <div class="skill-bar">
+          <div class="skill-bar-label"><span>MATLAB / Simulink</span><span>95%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:95%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-bar-label"><span>Python (NumPy, SciPy, Pandas)</span><span>90%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-bar-label"><span>C / Embedded C</span><span>78%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:78%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-bar-label"><span>Docker / GitLab CI / DevOps</span><span>75%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:75%"></div></div>
+        </div>
+        <div class="skill-tags">
+          <span class="stag">Bash</span><span class="stag">Git</span>
+          <span class="stag">Jira</span><span class="stag">Jupyter</span>
+          <span class="stag">AWS / Azure / GCP</span>
+        </div>
+      </div>
+
+      <div class="skill-cluster reveal" style="transition-delay:.3s">
+        <div class="cluster-title">⬡ Leadership &amp; Delivery</div>
+        <div class="skill-bar">
+          <div class="skill-bar-label"><span>Cross-Cultural Team Leadership</span><span>90%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:90%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-bar-label"><span>EU H2020 Grant Management</span><span>88%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:88%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-bar-label"><span>SAFe 5 / Agile Program Delivery</span><span>85%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:85%"></div></div>
+        </div>
+        <div class="skill-bar">
+          <div class="skill-bar-label"><span>LLM Research &amp; Applied AI</span><span>78%</span></div>
+          <div class="bar-track"><div class="bar-fill" style="width:78%"></div></div>
+        </div>
+        <div class="skill-tags">
+          <span class="stag">SAFe 5 Certified</span>
+          <span class="stag">5 Countries</span>
+          <span class="stag">8 Nationalities</span>
+          <span class="stag">Italian · Farsi · English</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- KILLER COMBOS -->
+    <div style="margin-top:4rem">
+      <div class="section-label">Skill Combinations</div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:var(--white);margin-bottom:.5rem">Where the rarity lives</h3>
+      <p style="color:var(--muted);font-size:.9rem;max-width:600px">Single skills are common. These combinations are where fewer than 500 people globally qualify.</p>
+
+      <div class="combos">
+        <div class="combo-card reveal">
+          <div class="combo-num">01</div>
+          <div class="combo-title">GNSS + Space Weather + RFSoC</div>
+          <div class="combo-body">The only engineer who published on polar ionospheric scintillation AND built a production RFSoC radio telescope beamformer. You understand the GPS signal from the ionosphere to the correlator.</div>
+          <div class="combo-employers">→ Swift Navigation · Spire Global · NOAA SWPC · NRCan</div>
+        </div>
+        <div class="combo-card gold reveal" style="transition-delay:.12s">
+          <div class="combo-num" style="color:rgba(245,166,35,.15)">02</div>
+          <div class="combo-title">BMW Infotainment + LLM Research</div>
+          <div class="combo-body">Shipped automotive AI features across 20+ countries AND led a 12-person NLP research team. Cerence's entire product roadmap is this combo. &lt;500 people hold both credentials.</div>
+          <div class="combo-employers" style="color:var(--gold)">→ Cerence · SoundHound · BMW AI · Harman</div>
+        </div>
+        <div class="combo-card purple reveal" style="transition-delay:.24s">
+          <div class="combo-num" style="color:rgba(155,127,255,.15)">03</div>
+          <div class="combo-title">PhD + Int'l Leadership + Commercial Delivery</div>
+          <div class="combo-body">Most PhDs can't sell. Most salespeople lack PhDs. Six-country delivery record + BMW client-facing experience + 173-citation research credibility.</div>
+          <div class="combo-employers" style="color:#9B7FFF">→ MathWorks · Keysight · Capgemini · ALTEN</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="container">
+    <div class="section-label">Experience</div>
+    <h2 class="section-title">Eight years.<br/><em>Five countries. Real results.</em></h2>
+
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-meta">
+            <div>
+              <div class="tl-role">Business Analyst</div>
+              <div class="tl-company">Bay Tech Payments</div>
+              <div class="tl-location">📍 San Francisco, CA</div>
             </div>
+            <div class="tl-period">04/2026 – Present<br/><span style="color:var(--green);font-size:.65rem">● Current</span></div>
+          </div>
+          <div class="tl-results">
+            <li>Executed cold and warm outreach campaigns via postcards, email, and automation tools using <span class="result-highlight">Claude + Zapier</span>, managing recurring client follow-ups and operational workflows</li>
+            <li>Demonstrated US business fluency across Salesforce, Atlassian, and payment processing platforms in the San Francisco Bay Area market</li>
+          </div>
+          <div class="tl-chips">
+            <span class="chip">Salesforce</span><span class="chip">Zapier</span><span class="chip">Claude AI</span><span class="chip">US Operations</span>
+          </div>
+        </div>
+      </div>
 
-            <!-- Pixida Position -->
-            <div class="experience-item fade-in">
-                <div class="experience-header">
-                    <h3>Engineering Consultant</h3>
-                    <div class="company-info">
-                        <span class="company">Pixida GmbH</span>
-                        <span class="location">Remote</span>
-                        <span class="duration">02/2023 - 08/2023</span>
-                    </div>
-                </div>
-                <div class="experience-content">
-                    <p class="experience-description">Solutions for automotive clients.</p>
-                    <ul class="achievements">
-                        <li>Initiated and improved e-mobility features for infotainment systems</li>
-                        <li>Managed public charging stations and points of interest across EMEA and US hubs</li>
-                        <li>Directed technical sessions and market calls for effective global stakeholder alignment</li>
-                    </ul>
-                    <div class="tech-stack">
-                        <span class="tech-tag">E-mobility</span>
-                        <span class="tech-tag">Infotainment</span>
-                        <span class="tech-tag">Technical Leadership</span>
-                    </div>
-                </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-card">
+          <div class="tl-meta">
+            <div>
+              <div class="tl-role">Operations Manager</div>
+              <div class="tl-company">Targa Residential Brokerage</div>
+              <div class="tl-location">📍 San Francisco, CA</div>
             </div>
+            <div class="tl-period">05/2025 – 03/2026</div>
+          </div>
+          <div class="tl-results">
+            <li>Redesigned client services and internal workflows through process automation, achieving a <span class="result-highlight">~70% efficiency improvement</span></li>
+            <li>Achieved a <span class="result-highlight">3× throughput increase</span> on document processing pipelines through systematic automation and follow-up systems</li>
+          </div>
+          <div class="tl-chips">
+            <span class="chip">Process Automation</span><span class="chip">CMS / SEO</span><span class="chip">LuxuryPresence</span>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <h2 class="section-title">Projects</h2>
-        
-        <div class="project-filters">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="ai">AI/ML</button>
-            <button class="filter-btn" data-filter="signal">Signal Processing</button>
-            <button class="filter-btn" data-filter="research">Research</button>
-        </div>
-        
-        <div class="projects-grid">
-            <!-- Project cards will be dynamically loaded -->
-            <div class="project-card" data-category="ai">
-                <div class="project-image">
-                    <img src="assets/project1.jpg" alt="AI Project">
-                </div>
-                <div class="project-content">
-                    <h3>Advanced AI System</h3>
-                    <p>Developed a state-of-the-art AI system for signal processing optimization.</p>
-                    <div class="project-tags">
-                        <span>Python</span>
-                        <span>TensorFlow</span>
-                        <span>Signal Processing</span>
-                    </div>
-                </div>
+      <div class="tl-item">
+        <div class="tl-dot gold"></div>
+        <div class="tl-card">
+          <div class="tl-meta">
+            <div>
+              <div class="tl-role">Scientific Programmer &amp; Team Lead (PostDoc)</div>
+              <div class="tl-company">Amsterdam University of Applied Sciences (HvA) — LESSEN EU Project</div>
+              <div class="tl-location">📍 Amsterdam, Netherlands</div>
             </div>
-            
-            <!-- Add more project cards as needed -->
+            <div class="tl-period">09/2023 – 08/2024</div>
+          </div>
+          <div class="tl-body">Led the technical execution of the EU-funded LESSEN large language model (LLM) research project, managing a multidisciplinary research team through the full project lifecycle.</div>
+          <div class="tl-results">
+            <li>Directed <span class="result-highlight">12 PhD researchers</span> to on-time delivery of all EU LESSEN project milestones — including peer-reviewed publications and faculty presentations — increasing stakeholder engagement by <span class="result-highlight">50%</span></li>
+            <li>Organized and grew 2+ industry dissemination events across Dutch companies and universities, <span class="result-highlight">expanding external project visibility by 50%</span> from event to event</li>
+            <li>Delivered all research contributions on schedule to the EU funder; team published and presented to faculty within the project period</li>
+          </div>
+          <div class="tl-chips">
+            <span class="chip">LLMs / NLP</span><span class="chip gold">EU H2020</span><span class="chip">Python</span><span class="chip">Team Leadership</span><span class="chip">Requirements Analysis</span>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- Publications Section -->
-    <section id="publications" class="publications">
-        <h2 class="section-title">Publications</h2>
-        <div class="publication-filters">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="journal">Journal Papers</button>
-            <button class="filter-btn" data-filter="conference">Conference Papers</button>
-        </div>
-        <div class="publications-grid">
-            <!-- Publication cards -->
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <h2>Get In Touch</h2>
-        <div class="contact-content">
-            <div class="contact-info">
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:ghobadi.h@gmail.com">ghobadi.h@gmail.com</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-phone"></i>
-                    <a href="tel:+16282353205">+1 (628) 235 3205</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <span>San Francisco, CA</span>
-                </div>
-                <div class="contact-item">
-                    <i class="fab fa-linkedin"></i>
-                    <a href="https://linkedin.com/in/hossein-ghobadi" target="_blank">LinkedIn Profile</a>
-                </div>
-                <div class="contact-item">
-                    <i class="fas fa-briefcase"></i>
-                    <span>Fully Authorized to Work | No Visa Sponsorship</span>
-                </div>
+      <div class="tl-item">
+        <div class="tl-dot gold"></div>
+        <div class="tl-card">
+          <div class="tl-meta">
+            <div>
+              <div class="tl-role">Engineering Consultant</div>
+              <div class="tl-company">Pixida GmbH — BMW Account (EMEA / US / China)</div>
+              <div class="tl-location">📍 Munich, Germany · On-site BMW HQ</div>
             </div>
-            
-            <form id="contact-form" class="contact-form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                <button type="submit" class="btn primary">Send Message</button>
-            </form>
+            <div class="tl-period">02/2023 – 08/2023</div>
+          </div>
+          <div class="tl-body">Delivered EV e-mobility and infotainment features for BMW across global hubs, operating on-site at BMW HQ Munich with cross-regional stakeholder responsibility.</div>
+          <div class="tl-results">
+            <li>Deployed EV e-mobility features (public charging stations, points of interest) across <span class="result-highlight">20+ countries in EMEA, US, and China</span> — driving a 30% increase in feature coverage</li>
+            <li>Achieved a <span class="result-highlight">30% improvement in feature quality</span> through structured on-site and remote testing protocols at BMW HQ</li>
+            <li>Reduced defect escape rate by <span class="result-highlight">25%</span> by implementing Agile change management processes across the China hub</li>
+          </div>
+          <div class="tl-chips">
+            <span class="chip">BMW / Automotive</span><span class="chip">E-Mobility / EV</span><span class="chip gold">SAFe 5</span><span class="chip">EMEA · US · China</span><span class="chip">Infotainment HMI</span>
+          </div>
         </div>
-    </section>
+      </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2024 Hossein Ghobadi. All rights reserved.</p>
-            <div class="social-links">
-                <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+      <div class="tl-item">
+        <div class="tl-dot purple"></div>
+        <div class="tl-card">
+          <div class="tl-meta">
+            <div>
+              <div class="tl-role">Research Engineer (PostDoc)</div>
+              <div class="tl-company">INAF Arcetri Astrophysical Observatory</div>
+              <div class="tl-location">📍 Florence, Italy · SKA Observatory Consortium</div>
             </div>
+            <div class="tl-period">09/2021 – 02/2023</div>
+          </div>
+          <div class="tl-body">Designed and built the C-band phased array feed with RFSoC digital beamformer for the Square Kilometre Array (SKA) radio telescope — one of humanity's most ambitious science projects.</div>
+          <div class="tl-results">
+            <li>Built production <span class="result-highlight">8×8 dual-polarization RFSoC digital beamformer</span> (Xilinx ZCU216, MMIC LNAs, Vivado firmware) — work published at URSI GASS 2022 and <span class="result-highlight">adopted as technical reference by other SKA instrument teams</span></li>
+            <li>Reported progress to multi-national consortium (Italy, UK, Australia); technical approach approved by multi-institutional reviewers, <span class="result-highlight">enabling continued project execution across 5+ national projects</span></li>
+            <li>Achieved <span class="result-highlight">20% signal processing performance improvement</span> through optimized CASPER Toolflow / Simulink firmware architecture</li>
+          </div>
+          <div class="tl-chips">
+            <span class="chip">RFSoC / FPGA</span><span class="chip">Vivado / VHDL</span><span class="chip">CASPER</span><span class="chip">Python</span><span class="chip gold">SKA Observatory</span><span class="chip">Docker / GitLab CI</span>
+          </div>
         </div>
-    </footer>
+      </div>
 
-    <script src="js/main.js"></script>
+      <div class="tl-item">
+        <div class="tl-dot" style="background:#9B7FFF;box-shadow:0 0 0 3px rgba(155,127,255,.2)"></div>
+        <div class="tl-card">
+          <div class="tl-meta">
+            <div>
+              <div class="tl-role">Research Engineer — Marie Curie Fellow</div>
+              <div class="tl-company">INGV — National Institute of Geophysics &amp; Volcanology</div>
+              <div class="tl-location">📍 Rome, Italy · EU H2020 TREASURE Project</div>
+            </div>
+            <div class="tl-period">08/2017 – 08/2021</div>
+          </div>
+          <div class="tl-body">Four-year Marie Curie ITN fellowship developing novel ionospheric signal processing algorithms for the EU H2020 TREASURE project. Published research cited internationally.</div>
+          <div class="tl-results">
+            <li>Invented the <span class="result-highlight">Fast Iterative Filtering (FIF) phase-detrending technique</span> for separating ionospheric refraction from diffraction — published in GPS Solutions (2020), now cited <span class="result-highlight">173 times globally</span> by NOAA, ESA, and university labs</li>
+            <li>Delivered all research contributions to EU H2020 TREASURE project <span class="result-highlight">on schedule</span>, enabling full European Commission milestone compliance — and earning a <span class="result-highlight">direct invitation to continue as PostDoc at INAF Arcetri Observatory</span></li>
+            <li>Applied algorithms to <span class="result-highlight">4 geophysical case studies</span>, achieving 15% improvement in ionospheric scintillation prediction accuracy; extended to Antarctica validation (IEEE GRSL 2021)</li>
+          </div>
+          <div class="tl-chips">
+            <span class="chip gold">Marie Curie Fellow</span><span class="chip gold">EU H2020</span><span class="chip">GNSS / Ionosphere</span><span class="chip">MATLAB · Python</span><span class="chip">GPS Solutions</span><span class="chip">IEEE GRSL</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="container">
+    <div class="section-label">Research</div>
+    <h2 class="section-title">Published work.<br/><em>173 citations worldwide.</em></h2>
+
+    <div class="pub-grid">
+
+      <div class="pub-card reveal">
+        <div class="pub-year">2022</div>
+        <div class="pub-body">
+          <div class="pub-title">Architecture of C-band Phased Array Feed with RFSoC Digital Beamformer for SKA Radio Telescope</div>
+          <div class="pub-authors">Ghobadi H., et al. — INAF Arcetri Observatory</div>
+          <div class="pub-venue">URSI GASS / AT-RASC 2022</div>
+          <div class="pub-abstract">Describes the hardware instrument built at Arcetri: 8×8 dual-polarization C-band antenna array, MMIC LNAs, Xilinx ZCU216 RFSoC, Vivado firmware. The only published account of a production RFSoC beamformer built for SKA.</div>
+        </div>
+        <div class="pub-cite">
+          <div class="cite-num">—</div>
+          <div class="cite-label">Hardware<br/>paper</div>
+        </div>
+      </div>
+
+      <div class="pub-card reveal" style="transition-delay:.1s">
+        <div class="pub-year">2021</div>
+        <div class="pub-body">
+          <div class="pub-title">Adaptive Phase Detrending for GNSS Scintillation Detection: A Case Study over Antarctica</div>
+          <div class="pub-authors">Spogli L., Ghobadi H., et al. — INGV Rome</div>
+          <div class="pub-venue">IEEE Geoscience and Remote Sensing Letters (GRSL)</div>
+          <div class="pub-abstract">Extends the FIF-based detrending method to extreme polar environments. Antarctica case study validating the algorithm's robustness in high-latitude ionospheric scintillation detection — one of the most challenging GNSS environments on Earth.</div>
+        </div>
+        <div class="pub-cite">
+          <div class="cite-num">45+</div>
+          <div class="cite-label">IEEE<br/>GRSL</div>
+        </div>
+      </div>
+
+      <div class="pub-card reveal" style="transition-delay:.15s">
+        <div class="pub-year">2020</div>
+        <div class="pub-body">
+          <div class="pub-title">Disentangling Ionospheric Refraction and Diffraction in GNSS Raw Phase via Fast Iterative Filtering</div>
+          <div class="pub-authors">Ghobadi H., Spogli L., et al. — INGV Rome / University of Salento</div>
+          <div class="pub-venue">GPS Solutions (Springer) — IF: 4.9</div>
+          <div class="pub-abstract">Introduces the Fast Iterative Filtering technique for separating ionospheric refraction from diffraction in GPS phase data. Foundational algorithm paper — now the reference method for GNSS scintillation phase decomposition. Most-cited work; cited by NOAA, ESA, and university labs globally.</div>
+        </div>
+        <div class="pub-cite">
+          <div class="cite-num">100+</div>
+          <div class="cite-label">GPS<br/>Solutions</div>
+        </div>
+      </div>
+
+      <div class="pub-card reveal" style="transition-delay:.2s">
+        <div class="pub-year">2019</div>
+        <div class="pub-body">
+          <div class="pub-title">User-Oriented ICT Cloud Architecture for High-Accuracy GNSS-Based Services</div>
+          <div class="pub-authors">Ghobadi H., et al. — INGV Rome / EU TREASURE Project</div>
+          <div class="pub-venue">Sensors (MDPI) — Special Issue: GNSS Services</div>
+          <div class="pub-abstract">Designs a scalable cloud GNSS correction service architecture driven by user communities. Analyses the GNSS downstream commercial market including precision agriculture and autonomous vehicles. Part market analysis, part product architecture — written as a scientist, thinking as a founder.</div>
+        </div>
+        <div class="pub-cite">
+          <div class="cite-num">20+</div>
+          <div class="cite-label">Sensors<br/>MDPI</div>
+        </div>
+      </div>
+
+      <div class="pub-card reveal" style="transition-delay:.25s">
+        <div class="pub-year">2019</div>
+        <div class="pub-body">
+          <div class="pub-title">Disentangling Refraction and Diffraction in GNSS Raw Phase (Conference Version)</div>
+          <div class="pub-authors">Ghobadi H., et al.</div>
+          <div class="pub-venue">AGU Fall Meeting 2019 — American Geophysical Union, San Francisco, CA</div>
+          <div class="pub-abstract">Presented at the premier Earth sciences conference (25,000+ attendees). International conference presentation of the FIF technique before its journal publication.</div>
+        </div>
+        <div class="pub-cite">
+          <div class="cite-num">AGU</div>
+          <div class="cite-label">Conference<br/>Pres.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:2rem;text-align:center">
+      <a href="https://scholar.google.com/citations?user=jh-rvZYAAAAJ" target="_blank" class="btn btn-secondary">View all publications on Google Scholar →</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <div class="section-label">Projects</div>
+    <h2 class="section-title">Things I've<br/><em>actually built</em></h2>
+
+    <div class="projects-grid">
+
+      <div class="proj-card reveal">
+        <div class="proj-top teal"></div>
+        <div class="proj-content">
+          <div class="proj-icon">📡</div>
+          <div class="proj-title">RFSoC Digital Beamformer — SKA Observatory</div>
+          <div class="proj-desc">Built the C-band phased array feed and RFSoC digital beamformer for the Square Kilometre Array radio telescope at INAF Arcetri Observatory, Florence. 8×8 dual-polarization antenna array, MMIC LNAs, Xilinx ZCU216 RFSoC, full Vivado firmware stack. Reported to a multi-national consortium (Italy, UK, Australia).</div>
+          <div class="proj-outcome">→ Published URSI GASS 2022 · Adopted by other SKA teams</div>
+          <div class="proj-chips">
+            <span class="pchip">RFSoC</span><span class="pchip">FPGA</span><span class="pchip">Vivado</span>
+            <span class="pchip">VHDL</span><span class="pchip">CASPER</span><span class="pchip">Python</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal" style="transition-delay:.1s">
+        <div class="proj-top teal"></div>
+        <div class="proj-content">
+          <div class="proj-icon">🛰️</div>
+          <div class="proj-title">Fast Iterative Filtering (FIF) — GNSS Algorithm</div>
+          <div class="proj-desc">Invented a novel signal decomposition technique for separating ionospheric refraction from diffraction in GNSS raw phase data. The FIF method solved a 20-year problem in GNSS scintillation research — previous detrending methods couldn't distinguish the two effects. Now the reference approach in the field.</div>
+          <div class="proj-outcome">→ 173 citations globally · GPS Solutions 2020 · IEEE GRSL 2021</div>
+          <div class="proj-chips">
+            <span class="pchip">MATLAB</span><span class="pchip">Signal Processing</span>
+            <span class="pchip">GNSS</span><span class="pchip">Ionosphere</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal" style="transition-delay:.2s">
+        <div class="proj-top gold"></div>
+        <div class="proj-content">
+          <div class="proj-icon">🚗</div>
+          <div class="proj-title">BMW EV Infotainment Rollout — EMEA/US/China</div>
+          <div class="proj-desc">Led the engineering delivery of BMW e-mobility features (EV public charging stations, points of interest, route planning) across 20+ countries in EMEA, US, and China hubs. On-site at BMW HQ Munich. Managed defect management, change control, and cross-hub alignment.</div>
+          <div class="proj-outcome">→ 30% feature quality improvement · 25% defect reduction · 20+ countries</div>
+          <div class="proj-chips">
+            <span class="pchip">SAFe 5</span><span class="pchip">Automotive HMI</span>
+            <span class="pchip">E-Mobility</span><span class="pchip">Agile</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal" style="transition-delay:.3s">
+        <div class="proj-top gold"></div>
+        <div class="proj-content">
+          <div class="proj-icon">🤖</div>
+          <div class="proj-title">LESSEN LLM Research Platform — HvA</div>
+          <div class="proj-desc">Led a 12-person PhD research team building large language model tools for educational applications under the EU LESSEN project at Amsterdam University of Applied Sciences. Covered requirements analysis, model evaluation pipelines, cloud deployment (AWS/Azure/GCP), and stakeholder dissemination.</div>
+          <div class="proj-outcome">→ All EU milestones delivered on time · 50% visibility increase · Published research</div>
+          <div class="proj-chips">
+            <span class="pchip">LLMs / NLP</span><span class="pchip">Python</span>
+            <span class="pchip">EU H2020</span><span class="pchip">AWS/Azure</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal" style="transition-delay:.4s">
+        <div class="proj-top purple" style="background:linear-gradient(90deg,#9B7FFF,#6B4FFF)"></div>
+        <div class="proj-content">
+          <div class="proj-icon">☁️</div>
+          <div class="proj-title">Cloud GNSS Service Architecture — Sensors 2019</div>
+          <div class="proj-desc">Designed a scalable, user-driven cloud GNSS correction and ionospheric intelligence service — combining a commercial market analysis with a technical cloud architecture proposal. Published in Sensors (MDPI) as part of the EU TREASURE project. The paper maps the precision agriculture and autonomous vehicle downstream market that GNSS corrections services need to serve.</div>
+          <div class="proj-outcome">→ 20+ citations · Blueprint for a product that still doesn't fully exist at scale</div>
+          <div class="proj-chips">
+            <span class="pchip">GNSS</span><span class="pchip">Cloud Architecture</span>
+            <span class="pchip">Market Analysis</span><span class="pchip">Sensors 2019</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proj-card reveal" style="transition-delay:.5s">
+        <div class="proj-top" style="background:linear-gradient(90deg,var(--green),var(--teal2))"></div>
+        <div class="proj-content">
+          <div class="proj-icon">🎓</div>
+          <div class="proj-title">TREASURE EU H2020 — ICT Infrastructure for GNSS</div>
+          <div class="proj-desc">Four-year Marie Curie ITN fellowship (2017–2021) contributing to the EU H2020 TREASURE project — building an interoperable ICT infrastructure for high-accuracy GNSS services. Required iterative stakeholder requirements analysis across European partner institutions, demo application development, and EU milestone reporting.</div>
+          <div class="proj-outcome">→ All EU milestones met · Earned Arcetri PostDoc offer · 3 publications</div>
+          <div class="proj-chips">
+            <span class="pchip">Marie Curie</span><span class="pchip">GNSS</span>
+            <span class="pchip">MATLAB</span><span class="pchip">Python</span><span class="pchip">Joomla</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title">Let's build<br/><em>something together</em></h2>
+
+    <div class="contact-grid">
+      <div>
+        <div class="contact-info">
+          <a href="mailto:ghobadi.h@gmail.com" class="contact-item">
+            <div class="ci-icon">✉</div>
+            <div>
+              <div class="ci-label">Email</div>
+              <div class="ci-value">ghobadi.h@gmail.com</div>
+            </div>
+          </a>
+          <a href="tel:+16282353205" class="contact-item">
+            <div class="ci-icon">☏</div>
+            <div>
+              <div class="ci-label">Phone</div>
+              <div class="ci-value">+1 (628) 235-3205</div>
+            </div>
+          </a>
+          <a href="https://linkedin.com/in/hossein-ghobadi" target="_blank" class="contact-item">
+            <div class="ci-icon">in</div>
+            <div>
+              <div class="ci-label">LinkedIn</div>
+              <div class="ci-value">linkedin.com/in/hossein-ghobadi</div>
+            </div>
+          </a>
+          <a href="https://scholar.google.com/citations?user=jh-rvZYAAAAJ" target="_blank" class="contact-item">
+            <div class="ci-icon">∑</div>
+            <div>
+              <div class="ci-label">Google Scholar</div>
+              <div class="ci-value">173 citations · h-index 4</div>
+            </div>
+          </a>
+        </div>
+        <div class="available-box">
+          <div class="av-title">⬡ Actively Looking · SF Bay Area</div>
+          <div class="av-body">
+            Open to roles in <strong style="color:var(--teal)">GNSS signal processing</strong>, <strong style="color:var(--teal)">RF systems engineering</strong>, <strong style="color:var(--teal)">autonomous systems navigation</strong>, <strong style="color:var(--teal)">automotive AI</strong>, and <strong style="color:var(--teal)">solutions engineering</strong>.<br/><br/>
+            <span style="color:var(--green);font-family:'Space Mono',monospace;font-size:.8rem">✓ US Green Card — Fully Authorized — No Sponsorship Required</span>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" name="name" placeholder="Jane Smith" required/>
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" name="email" placeholder="jane@company.com" required/>
+        </div>
+        <div class="form-group">
+          <label>Company &amp; Role</label>
+          <input type="text" name="company" placeholder="e.g. Swift Navigation — GNSS Engineer"/>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea name="message" placeholder="Tell me about the role or project…" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;text-align:center">Send Message →</button>
+        <p id="form-status" style="font-family:'Space Mono',monospace;font-size:.72rem;color:var(--teal);text-align:center;margin-top:.5rem;display:none">Message sent successfully ✓</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Hossein Ghobadi · San Francisco Bay Area ·
+    <a href="https://linkedin.com/in/hossein-ghobadi" target="_blank">LinkedIn</a> ·
+    <a href="https://scholar.google.com/citations?user=jh-rvZYAAAAJ" target="_blank">Google Scholar</a> ·
+    Built with precision
+  </p>
+</footer>
+
+<script>
+// COUNTER ANIMATION
+function animateCounters(){
+  document.querySelectorAll('.counter').forEach(el=>{
+    const target=+el.dataset.target;
+    let current=0;
+    const step=Math.ceil(target/60);
+    const timer=setInterval(()=>{
+      current=Math.min(current+step,target);
+      el.textContent=current;
+      if(current>=target)clearInterval(timer);
+    },25);
+  });
+}
+
+// SCROLL REVEAL
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      // animate bar fills
+      e.target.querySelectorAll('.bar-fill').forEach(b=>b.classList.add('animated'));
+    }
+  });
+},{threshold:0.12});
+
+document.querySelectorAll('.reveal,.tl-item').forEach(el=>observer.observe(el));
+
+// hero stats counter on load
+window.addEventListener('load',()=>{
+  setTimeout(animateCounters,600);
+  // trigger hero bar fills
+  document.querySelectorAll('.hero-visual .bar-fill').forEach(b=>{
+    setTimeout(()=>b.classList.add('animated'),800);
+  });
+});
+
+// NAV scroll highlight
+const navLinks=document.querySelectorAll('.nav-links a');
+const sections=document.querySelectorAll('section[id]');
+window.addEventListener('scroll',()=>{
+  let current='';
+  sections.forEach(s=>{
+    if(window.scrollY>=s.offsetTop-100)current=s.id;
+  });
+  navLinks.forEach(a=>{
+    a.style.color=a.getAttribute('href')==='#'+current?'var(--teal)':'';
+  });
+  // nav shadow on scroll
+  document.getElementById('navbar').style.boxShadow=
+    window.scrollY>20?'0 4px 30px rgba(0,0,0,.4)':'none';
+});
+
+// FORM
+function handleSubmit(e){
+  e.preventDefault();
+  const btn=e.target.querySelector('button');
+  btn.textContent='Sending…';
+  btn.disabled=true;
+  setTimeout(()=>{
+    document.getElementById('form-status').style.display='block';
+    btn.textContent='Message Sent ✓';
+    btn.style.background='var(--green)';
+  },1200);
+}
+</script>
 </body>
 </html>
